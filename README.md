@@ -50,8 +50,7 @@ python examples.py gdp --csv out.csv
 | Official layoffs and discharges (JOLTS) | [`layoffs-rate`](#layoffs-rate) | `GET /layoffs/official/jolts` |
 | Largest US trade deficits by country, last 12 months | [`trade-deficits`](#trade-deficits) | `GET /us-trade/summary` |
 | Monthly trade with China since 2024 | [`trade-china`](#trade-china) | `GET /us-trade` |
-| Gas prices by state, newest week | [`gas-prices`](#gas-prices) | `GET /gas-prices` |
-| Upcoming CPI releases | [`economic-calendar`](#economic-calendar) | `GET /market-calendar` |
+| Gas prices in the states of the weekly survey, newest week | [`gas-prices`](#gas-prices) | `GET /gas-prices` |
 
 ## Headline indicators
 
@@ -144,12 +143,14 @@ curl -H "apikey: $DATAPORIUM_API_KEY" "https://api.dataporium.io/inflation-categ
 ### The next Federal Reserve meetings and the current target range
 
 ```python
-dp.fed_decisions(status="upcoming")
+dp.fed_decisions(status="upcoming", order="asc")
 ```
 
 ```bash
-curl -H "apikey: $DATAPORIUM_API_KEY" "https://api.dataporium.io/fed-decisions?status=upcoming"
+curl -H "apikey: $DATAPORIUM_API_KEY" "https://api.dataporium.io/fed-decisions?status=upcoming&order=asc"
 ```
+
+The answer also has `current_target`, `next_meeting` and `last_decision`.
 
 <a id="fed-cuts"></a>
 ### Every Fed rate cut since 2019
@@ -276,7 +277,7 @@ curl -H "apikey: $DATAPORIUM_API_KEY" "https://api.dataporium.io/us-trade?dimens
 Country codes: 5700 China, 1220 Canada, 2010 Mexico. `dimension=product` gives product groups.
 
 <a id="gas-prices"></a>
-### Gas prices by state, newest week
+### Gas prices in the states of the weekly survey, newest week
 
 ```python
 dp.gas_prices(area_type="state", product="regular", latest=True, sort="price_usd", order="desc")
@@ -285,19 +286,6 @@ dp.gas_prices(area_type="state", product="regular", latest=True, sort="price_usd
 ```bash
 curl -H "apikey: $DATAPORIUM_API_KEY" "https://api.dataporium.io/gas-prices?area_type=state&product=regular&latest=true&sort=price_usd&order=desc"
 ```
-
-<a id="economic-calendar"></a>
-### Upcoming CPI releases
-
-```python
-dp.market_calendar(event_name="CPI")
-```
-
-```bash
-curl -H "apikey: $DATAPORIUM_API_KEY" "https://api.dataporium.io/market-calendar?event_name=CPI"
-```
-
-Also FOMC_Meeting, Nonfarm_Payrolls, GDP, Retail_Sales and 400 other events.
 
 ## Answers
 
