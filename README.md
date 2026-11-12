@@ -50,6 +50,7 @@ python examples.py gdp --csv out.csv
 | Official layoffs and discharges (JOLTS) | [`layoffs-rate`](#layoffs-rate) | `GET /layoffs/official/jolts` |
 | Largest US trade deficits by country, last 12 months | [`trade-deficits`](#trade-deficits) | `GET /us-trade/summary` |
 | Monthly trade with China since 2024 | [`trade-china`](#trade-china) | `GET /us-trade` |
+| Release dates of consumer price index (CPI) reports | [`economic-calendar`](#economic-calendar) | `GET /market-calendar` |
 | Gas prices in the states of the weekly survey, newest week | [`gas-prices`](#gas-prices) | `GET /gas-prices` |
 
 ## Headline indicators
@@ -275,6 +276,19 @@ curl -H "apikey: $DATAPORIUM_API_KEY" "https://api.dataporium.io/us-trade?dimens
 ```
 
 Country codes: 5700 China, 1220 Canada, 2010 Mexico. `dimension=product` gives product groups.
+
+<a id="economic-calendar"></a>
+### Release dates of consumer price index (CPI) reports
+
+```python
+dp.market_calendar(event_name="CPI YY")
+```
+
+```bash
+curl -H "apikey: $DATAPORIUM_API_KEY" "https://api.dataporium.io/market-calendar?event_name=CPI%20YY"
+```
+
+Event names are written as in the calendar, for example `CPI YY` (CPI, change from a year earlier). Each row has the date, time, previous value and `country`.
 
 <a id="gas-prices"></a>
 ### Gas prices in the states of the weekly survey, newest week

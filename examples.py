@@ -37,6 +37,7 @@ EXAMPLES = {
     'layoffs-rate': ('Official layoffs and discharges (JOLTS)', 'layoffs_official_jolts', {'area': 'US', 'latest': True}, None),
     'trade-deficits': ('Largest US trade deficits by country, last 12 months', 'us_trade_summary', {'dimension': 'country', 'period': 'last_12_months', 'sort': 'balance', 'order': 'asc', 'limit': 10}, None),
     'trade-china': ('Monthly trade with China since 2024', 'us_trade', {'dimension': 'country', 'code': '5700', 'month_from': '2024-01', 'order': 'asc'}, None),
+    'economic-calendar': ('Release dates of consumer price index (CPI) reports', 'market_calendar', {'event_name': 'CPI YY'}, None),
     'gas-prices': ('Gas prices in the states of the weekly survey, newest week', 'gas_prices', {'area_type': 'state', 'product': 'regular', 'latest': True, 'sort': 'price_usd', 'order': 'desc'}, None),
 }
 
